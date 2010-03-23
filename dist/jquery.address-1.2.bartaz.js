@@ -6,7 +6,7 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
- * Date: 2010-03-23 14:26:17 +0100 (Tue, 23 Mar 2010)
+ * Date: 2010-03-23 14:34:54 +0100 (Tue, 23 Mar 2010)
  */
 (function ($) {
 
@@ -438,8 +438,9 @@
             },
             path: function(value) {
                 if (value !== undefined) {
-                    var qs = this.queryString();
-                    this.value(value + (qs ? '?' + qs : ''));
+                    var qs = this.queryString(),
+                        f  = this.fragment();
+                    this.value(value + (qs ? '?' + qs : '') + (f ? '#' + f : ''));
                     return this;
                 }
                 value = this.value();

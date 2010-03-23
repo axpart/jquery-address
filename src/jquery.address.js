@@ -438,8 +438,9 @@
             },
             path: function(value) {
                 if (value !== undefined) {
-                    var qs = this.queryString();
-                    this.value(value + (qs ? '?' + qs : ''));
+                    var qs = this.queryString(),
+                        f  = this.fragment();
+                    this.value(value + (qs ? '?' + qs : '') + (f ? '#' + f : ''));
                     return this;
                 }
                 value = this.value();

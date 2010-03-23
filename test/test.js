@@ -7,6 +7,37 @@ test("should set value", function() {
 });
 
 
+module("Path");
+
+test("should set path with empty value", function() {
+    $.address.value('');
+
+    $.address.path('test');
+
+    equals($.address.value(), '/test');
+    equals($.address.path(), '/test');
+});
+
+test("should set path with query", function() {
+    $.address.value('/?p=0');
+
+    $.address.path('test');
+
+    equals($.address.value(), '/test?p=0');
+    equals($.address.path(), '/test');
+});
+
+test("should set path with fragment", function() {
+    $.address.value('/#fragment');
+
+    $.address.path('test');
+
+    equals($.address.value(), '/test#fragment');
+    equals($.address.path(), '/test');
+    equals($.address.fragment(), 'fragment');
+});
+
+
 module("Query");
 
 test("should set query with empty value", function() {
