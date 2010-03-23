@@ -1,3 +1,7 @@
+### Note
+
+This is a fork of <http://github.com/asual/jquery-address>. Check there for the latest official version, as I can't promise that my code will be reliable ;)
+
 # jQuery Address
 
 The jQuery Address plugin provides powerful deep linking capabilities and allows the 
