@@ -6,7 +6,7 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
- * Date: 2010-03-23 14:49:38 +0100 (Tue, 23 Mar 2010)
+ * Date: 2010-03-23 15:08:01 +0100 (Tue, 23 Mar 2010)
  */
 (function ($) {
 
@@ -202,7 +202,7 @@
             FALSE = false,
             _opts = {
                 autoUpdate: TRUE, 
-                crawlable: TRUE,
+                crawlable: FALSE,
                 history: TRUE, 
                 strict: TRUE
             },

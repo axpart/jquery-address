@@ -202,7 +202,7 @@
             FALSE = false,
             _opts = {
                 autoUpdate: TRUE, 
-                crawlable: TRUE,
+                crawlable: FALSE,
                 history: TRUE, 
                 strict: TRUE
             },
