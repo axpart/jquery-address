@@ -58,6 +58,31 @@ asyncTest("Parameter test", function() {
     }, 1000);
 });
 
+asyncTest("Fragment test with params", function() {
+    setTimeout(function() {
+        $.address.fragment('fragment');
+        equals($.address.value(), '/test?p=2&p=3&s=3#fragment');
+        equals($.address.path(), '/test');
+        equals($.address.parameter('p').toString(), '2,3');
+        equals($.address.parameter('s').toString(), 3);
+        equals($.address.parameterNames().toString(), 'p,s');
+        equals($.address.fragment(), 'fragment');
+        start();
+    }, 1000);
+});
+
+asyncTest("Fragment test", function() {
+    setTimeout(function() {
+        $.address.value('/test');
+        $.address.fragment('fragment');
+        equals($.address.value(), '/test#fragment');
+        equals($.address.path(), '/test');
+        equals($.address.fragment(), 'fragment');
+        start();
+    }, 1000);
+});
+
+
 setTimeout(function() {
     $.address.value('/');
 }, 10000);

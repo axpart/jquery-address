@@ -1,12 +1,12 @@
 /*
- * jQuery Address Plugin v1.2
+ * jQuery Address Plugin v1.2.bartaz
  * http://www.asual.com/jquery/address/
  *
  * Copyright (c) 2009-2010 Rostislav Hristov
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
- * Date: 2010-03-20 21:26:11 +0200 (Sat, 20 Mar 2010)
+ * Date: 2010-03-23 10:19:58 +0100 (Tue, 23 Mar 2010)
  */
 (function ($) {
 
@@ -443,7 +443,8 @@
                     return this;
                 }
                 value = this.value();
-                return (value.indexOf('?') != -1) ? value.split('?')[0] : value;
+                return (value.indexOf('?') != -1) ? value.split('?')[0] :
+                       (value.indexOf('#') != -1) ? value.split('#')[0] : value;
             },
             queryString: function(value) {
                 if (value !== undefined) {
@@ -453,7 +454,8 @@
                 value = this.value();
                 var index = value.indexOf('?');
                 if (index != -1 && index < value.length) {
-                    return value.substr(index + 1);
+                    value = value.substr(index + 1);
+                    return (value.indexOf('#') != -1) ? value.split('#')[0] : value;
                 }
             },
             parameter: function(name, value, append) {
@@ -481,10 +483,8 @@
                     this.queryString(params.join('&'));
                     return this;
                 }
-                value = this.value();
-                var index = value.indexOf('?');
-                if (index != -1) {
-                    value = value.substr(index + 1);
+                value = this.queryString();
+                if (value) {
                     params = value.split('&');
                     var r = [];
                     for (i = 0; i < params.length; i++) {
@@ -526,6 +526,18 @@
                     }
                 }
                 return names;
+            },
+            fragment: function(value) {
+                if (value !== undefined) {
+                    var qs = this.queryString();
+                    this.value(this.path() + (qs ? '?' + qs : '') + (value ? '#' + value : ''));
+                    return this;
+                }
+                value = this.value();
+                var index = value.indexOf('#');
+                if (index != -1 && index < value.length) {
+                    return value.substr(index + 1);
+                }
             }
         };
         
