@@ -6,7 +6,7 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  *
- * Date: 2010-03-23 14:34:54 +0100 (Tue, 23 Mar 2010)
+ * Date: 2010-03-23 14:49:38 +0100 (Tue, 23 Mar 2010)
  */
 (function ($) {
 
@@ -378,6 +378,12 @@
                 return _d.title;
             },
             value: function(value) {
+                if (arguments.length > 1) {
+                    var path = arguments[0],
+                        queryString = arguments[1] ? '?' + arguments[1] : '',
+                        fragment = arguments[2] ? '#' + arguments[2] : '';
+                    return this.value(path + queryString + fragment);
+                }
                 if (value !== undefined) {
                     value = _ec(_dc(_strict(value, TRUE)));
                     if (value == '/') {
@@ -438,9 +444,7 @@
             },
             path: function(value) {
                 if (value !== undefined) {
-                    var qs = this.queryString(),
-                        f  = this.fragment();
-                    this.value(value + (qs ? '?' + qs : '') + (f ? '#' + f : ''));
+                    this.value(value, this.queryString(), this.fragment());
                     return this;
                 }
                 value = this.value();
@@ -449,8 +453,7 @@
             },
             queryString: function(value) {
                 if (value !== undefined) {
-                    var f = this.fragment();
-                    this.value(this.path() + (value ? '?' + value : '') + (f ? '#' + f : ''));
+                    this.value(this.path(), value, this.fragment());
                     return this;
                 }
                 value = this.value();
@@ -531,8 +534,7 @@
             },
             fragment: function(value) {
                 if (value !== undefined) {
-                    var qs = this.queryString();
-                    this.value(this.path() + (qs ? '?' + qs : '') + (value ? '#' + value : ''));
+                    this.value(this.path(), this.queryString(), value);
                     return this;
                 }
                 value = this.value();

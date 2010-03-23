@@ -6,6 +6,23 @@ test("should set value", function() {
     equals($.address.value(), '/test');
 });
 
+test("should set value as path and query", function() {
+    $.address.value('/test', 'p=0');
+
+    equals($.address.value(), '/test?p=0');
+});
+
+test("should set value as path and fragment", function() {
+    $.address.value('/test', '', 'fragment');
+
+    equals($.address.value(), '/test#fragment');
+});
+
+test("should set value as path, query and fragment", function() {
+    $.address.value('/test', 'p=0', 'fragment');
+
+    equals($.address.value(), '/test?p=0#fragment');
+});
 
 module("Path");
 
